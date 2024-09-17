@@ -1,0 +1,47 @@
+server:
+  port: 9091
+  servlet:
+    context-path: /ms-proyecto-auth-server
+
+spring:
+  application:
+    name: ms-proyecto-auth-server
+  profiles:
+    default: prod
+  config:
+    import: "optional:configserver:https://ms-config-server.onrender.com"
+  r2dbc:
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.HSQLDialect
+        default_schema: PUBLIC
+        format_sql: true
+        generate_statistics: true
+
+eureka:
+  instance:
+    instanceId: "${spring.application.name}:${random.value}"
+  client:
+    serviceUrl:
+      defaultZone: ${eureka.url}
+
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss.SSS} %magenta([%thread]) [%-5level] %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+  level:
+    org.springframework.web: ERROR
+    org.springframework.data.r2dbc: DEBUG
+    io.r2dbc.postgresql.QUERY: DEBUG
+    io.r2dbc.postgresql.PARAM: DEBUG
+    org.hibernate:
+      root: ERROR
+      SQL: DEBUG
+      type.descriptor.sql.BasicBinder: TRACE
