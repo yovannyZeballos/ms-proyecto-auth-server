@@ -1,4 +1,12 @@
 FROM gradle:7.6.1-jdk17 AS builder
+# Define arguments for environment variables
+ARG GH_PACKAGES_USER
+ARG GH_PACKAGES_TOKEN
+
+# Set the environment variables
+ENV GH_PACKAGES_USER=$GH_PACKAGES_USER
+ENV GH_PACKAGES_TOKEN=$GH_PACKAGES_TOKEN
+
 COPY build.gradle .
 COPY src ./src
 RUN gradle build -x test
