@@ -1,9 +1,9 @@
-server:
   port: ${PORT:9091}
   servlet:
     context-path: /ms-proyecto-auth-server
 
-spring:
+spring:server:
+
   application:
     name: ms-proyecto-auth-server
   profiles:
@@ -28,6 +28,7 @@ spring:
 eureka:
   instance:
     instanceId: "${spring.application.name}:${random.value}"
+    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: ${eureka.url}
