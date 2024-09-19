@@ -28,6 +28,7 @@ spring:
 eureka:
   instance:
     instanceId: "${spring.application.name}:${random.value}"
+    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: ${eureka.url}
