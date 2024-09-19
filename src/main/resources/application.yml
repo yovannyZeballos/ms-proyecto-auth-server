@@ -2,8 +2,7 @@
   servlet:
     context-path: /ms-proyecto-auth-server
 
-spring:server:
-
+spring:
   application:
     name: ms-proyecto-auth-server
   profiles:
@@ -28,7 +27,6 @@ spring:server:
 eureka:
   instance:
     instanceId: "${spring.application.name}:${random.value}"
-    preferIpAddress: true
   client:
     serviceUrl:
       defaultZone: ${eureka.url}
