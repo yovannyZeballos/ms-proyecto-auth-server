@@ -36,6 +36,7 @@ public class JwtHelper {
           .setExpiration(experationDate)
           .signWith(getSecretKey())
           .claim("role", user.getRoleId())
+          .claim("id", user.getId())
           .claim("name", user.getName())
           .claim("email", user.getEmail())
           .compact();
